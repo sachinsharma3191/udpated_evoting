@@ -1,0 +1,51 @@
+.information
+{
+float:left; 
+width:65%;
+}
+
+.canvasphoto{
+float:right; 
+width:25%;
+}
+
+.information, .canvasphoto, .rightside
+{
+  font-family: Trebuchet MS, sans-serif;
+  font-size: 25px;
+  margin-right: 10px;
+  padding: 20px 0px;
+  margin-top:30px;
+}
+
+.videoclass
+{
+  width:250px;
+  height:200px;
+  border:1.5px solid;
+  border-right-color: #2eca6a;
+  border-bottom-color: #2eca6a;
+  border-top-color:#989898;
+  border-left-color: #989898;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.cp{
+  width: 30%;
+}
+
+.rg{
+    width: 35%;
+    margin-top: 0px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 15px;
+    height: 8%;
+    font-size: 25px;
+    color: black;
+    background-color: #2eca6a;
+    margin-top: 8%;
+    margin-bottom: 3%;
+    border: none;
+}
