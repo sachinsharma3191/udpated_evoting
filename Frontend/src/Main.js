@@ -6,7 +6,9 @@ import './App.css';
 import Register from "./Register";
 import RegisterInfo from "./RegisterInfo";
 import TakePhoto from "./TakePhoto";
+import TakeRegisterPhoto from "./TakeRegisterPhoto";
 import Welcome from "./Welcome";
+import VerifyEmail from "./VerifyEmail"
 
 class Main extends Component {
   render() {
@@ -18,8 +20,9 @@ class Main extends Component {
             <Route exact path="/Register" component={Register} />
             <Route exact path="/RegisterInfo" component={RegisterInfo} />
             <Route exact path="/TakePhoto" component={TakePhoto} />
-            {/* <Route exact path="/Welcome" component={Welcome} /> */}
             <Route exact path="/welcome" component={Welcome} />
+            <Route exact path="/verifyemail" component={VerifyEmail} />
+            <Route exact path="/takeregisterphoto" component={TakeRegisterPhoto} />
           </div>
        
       </div>

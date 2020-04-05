@@ -2,15 +2,27 @@ import React, { Component } from "react";
 import axios from 'axios';
 import renderHTML from 'react-render-html';
 import { Link, Redirect } from 'react-router-dom';
+import RegisterStorage from "./stores/RegisterStorage";
+import swal from "sweetalert2";
 import './Register.css';
 import './takephoto.css';
 
-class TakePhoto extends Component {
+class TakeRegisterPhoto extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: RegisterStorage.username
+        }
+        
+    }
+
+
     async captureImage() {
         
         console.log('in capture image ')
         var data = {"name":"harsh"}
-        const response = await axios.get('http://localhost:5000/api/predict',data)
+        const response = await axios.get('http://localhost:5000/api/registration',data)
 
         console.log(" response.data" + response)
 
@@ -79,5 +91,5 @@ class TakePhoto extends Component {
     }
   }
   //Export The Main Component
-  export default TakePhoto;
+  export default TakeRegisterPhoto;
   

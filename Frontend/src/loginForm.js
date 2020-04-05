@@ -41,6 +41,7 @@ class LoginForm extends React.Component {
         })
 
         try{
+            console.log(this.state.username);
             let res = await fetch('http://localhost:3002/login', {
                 method: 'post',
                 headers: {

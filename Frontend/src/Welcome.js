@@ -17,7 +17,10 @@ class Welcome extends Component {
             buttonDisabled : false
         }}
 
-
+doLogout(){
+    UserStorage.username='';
+    this.props.history.push("/Login");
+}
 render() {
 
     if (UserStorage.username !== null) {
@@ -53,11 +56,9 @@ render() {
 <div className="nav-item" className="nav-link active" id="hom">
 Welcome {UserStorage.username}
 </div>
-                <SubmitButton>
+                <SubmitButton
                     text = {'Log Out'}
-                     disabled = {false}
-                    onClick = {() => this.doLogout()}  
-                   </SubmitButton>
+                     disabled = {false} onClick={()=> this.doLogout()} />
 
 </div>
       );

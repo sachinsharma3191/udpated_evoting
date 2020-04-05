@@ -21,8 +21,9 @@ body, html, #root, .app, .container {
   background-position: right;
   background-size: cover;
   height: 500px;
-  margin-left:30px;
-  width:400px;
+  margin-left:100px;
+  margin-top:20px;
+  width:90%;
   /* width: 50%; */
 }
 
@@ -47,6 +48,9 @@ body, html, #root, .app, .container {
  padding-right: 20px;
  padding-bottom: 40px;
 }
+
+
+
 .logindetails{
   /* border: solid 3px #2eca6a; */
   /* padding-top:10px; */
@@ -208,8 +212,9 @@ body, html, #root, .app, .container {
   background-color: #2eca6a;
   width: 350px;
   height: 100px;
-  /* margin-left:165px; */
-  /* margin-top:100px; */
+  margin-left:165px; 
+  margin-top:100px; 
+  padding:20px;
   font-family: 'Poppins', sans-serif;
   color: black;
   font-size: 30px;
