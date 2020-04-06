@@ -139,7 +139,7 @@ class RegisterInfo extends Component {
                     <div className="navigationclass row">
                         <ul className="navbar-nav" id="navg">
                             <li className="nav-item">
-                                <Link to="/Register"className="nav-link register" id="reg" >Register
+                                <Link to="/RegisterInfo"className="nav-link register" id="reg" >Register
                                 </Link>
                             </li>
                             <li className="nav-item">

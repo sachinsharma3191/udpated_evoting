@@ -18,13 +18,14 @@ body, html, #root, .app, .container {
 }
 .maps{
   background-image: url('./evotinghome.jpg'); 
-  background-position: right;
+  background-position: center center;
+  position: absolute;
+  z-index: -1;
   background-size: cover;
   height: 500px;
-  margin-left:100px;
-  margin-top:20px;
-  width:90%;
-  /* width: 50%; */
+  margin-left:250px;
+  margin-top:270px;
+  width:72%;
 }
 
 /* .bckimage, .bckimagereg {
@@ -54,10 +55,11 @@ body, html, #root, .app, .container {
 .logindetails{
   /* border: solid 3px #2eca6a; */
   /* padding-top:10px; */
+  margin-top: 130px;
   width: 35%;
   height: 30%;
   position: absolute;
-  margin-left:46%;
+  margin-left:60%;
   margin-right:10%;
   z-index: 2;
   border-radius: 10px;
@@ -80,9 +82,9 @@ body, html, #root, .app, .container {
   margin: 0%;
   margin-top:50px;
   padding: 0%;
-  margin-left:165px;
   padding-bottom: 20px;
 }
+
 #pitch
 {
   box-shadow: inset 3px 0 0 0 #2eca6a;
@@ -117,7 +119,7 @@ body, html, #root, .app, .container {
   margin-right:0px;
   margin-bottom: 20px;
   margin-top: 35px;
-  padding-left:20px
+  padding-left:100px;
 }
 
 .colorb
@@ -157,6 +159,11 @@ body, html, #root, .app, .container {
   z-index: 0;
   height: 40%;
   width: 60%;
+}
+
+.reg
+{
+  padding-right: 180px;
 }
 .overlayingreg
 {
@@ -205,22 +212,28 @@ body, html, #root, .app, .container {
 .submitButton {
  padding-top: 16px;
 }
+
 .qoute {
   position: absolute;
   border-radius: 5px;
-  z-index: 2;
+  z-index: 1;
   background-color: #2eca6a;
   width: 350px;
-  height: 100px;
-  margin-left:165px; 
-  margin-top:100px; 
+  height: 140px;
+  margin-top:350px; 
   padding:20px;
   font-family: 'Poppins', sans-serif;
   color: black;
   font-size: 30px;
   font-weight: bold;
+  margin-left: 150px;
 }
 
+.qoute p{
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  color: #565656;
+}
 
 .btn {
  width: 100%;
@@ -240,9 +253,8 @@ body, html, #root, .app, .container {
 
 .reviews
 {
-  margin-top:10%;
-  margin-left:12%;
-  width: 78%;
+  margin-top:50%;
+  width: 98%;
 }
 
 .review
@@ -266,6 +278,7 @@ body, html, #root, .app, .container {
   font-weight: bold;
   font-size: 40px;
   border-left: solid 3px #2eca6a;
+  padding-left: 10px;
 }
 
 .reviewtitle p
@@ -296,7 +309,7 @@ body, html, #root, .app, .container {
   width: 30%;
   margin-left:10px;
   margin-right:10px;
-  margin-top:5px;
+  margin-top:10px;
   margin-bottom: 5%;
   padding: 2px;
   

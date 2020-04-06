@@ -59,7 +59,7 @@ class LoginForm extends React.Component {
                 // let redirectVar = null;
                 UserStorage.isLoggedIn = true;
                 UserStorage.username = result.username;
-                this.props.history.push("/welcome");
+                this.props.history.push("/takephoto");
                 console.log("username" + result.username);
                 // redirectVar = <Redirect to="/welcome" />
             }
@@ -86,21 +86,18 @@ class LoginForm extends React.Component {
 {/* {redirectVar} */}
         {/* <div className="body"> */}
         <div className= "header">
-        <div className="navigationclass row">
                 <ul className="navbar-nav" id="navg">
-                    <li className="nav-item" className="nav-link register" id="reg">
-                    <Link to="/Register"> Register
-                        {/* <a className="nav-link register" id="reg" >Register</a> */}
+                    <li className="nav-item">
+                    <Link to="/RegisterInfo" className="nav-link reg" id="log"> Register
                     </Link>
                     </li>
                     <li className="nav-item">
                     <Link to="/Login" className="nav-link" id="log"> Login
-                        {/* <a  >Login</a> */}
-                        </Link>
+                    </Link>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <a className="nav-link active" id="hom" >Home</a>
-                    </li>
+                    </li> */}
                     <li className="nav-item">
                         <a className=" brand">Electronic</a>
                     </li>
@@ -108,7 +105,7 @@ class LoginForm extends React.Component {
                         <a className=" colorb">Ballot</a>
                     </li>
                 </ul>
-            </div>
+           
          
 </div>
 <div className="row">
@@ -118,22 +115,14 @@ class LoginForm extends React.Component {
         </div>
 </div>
                 
-<div className="row maps">
-    <div className="overlaying col-md-6">
-        <div className="bckimage " id="bck"> </div>
-        <div className="qoute">
-            <div className ="h3" className="since-title"> HelpingPeopleConnect
-                    {/* <span></span> */}
-                    <br></br>
-                    Since 2020
-                    <br></br>
-                    Security & Trust
+<div className="maps"></div>
+<div className="qoute">
+            <div className ="h3" className="since-title"> Helping People Connect
+                    <br></br>Since 2020
+                    <p>Security & Trust</p>
             </div>
-        </div>
-     </div>
-
-        <div className="loginForm logindetails col-md-6">
-        Login
+</div>
+<div className="loginForm logindetails col-md-6">Login
            <InputFields type='text' placeholder='Username'
            value={ this.state.username ? this.state.username:''}
            onChange = {(val)=> this.setInputValue('username',val)}
@@ -147,12 +136,10 @@ class LoginForm extends React.Component {
            disabled = {this.state.buttonDisabled}
            onClick={()=> this.doLogin()}
            />
-        </div>
 </div>
 
 <div className= "row">
     < div className ="reviews">
-
             <div className="reviewtitle">
                     <div className=" h3 titlemessage"> Straight from the horses mouth! </div>
                         <span></span>

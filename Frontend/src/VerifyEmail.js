@@ -15,7 +15,8 @@ class VerifyEmail extends Component {
         super(props);
         this.state = {
             otp: '',
-            email: RegisterStorage.email
+            email: RegisterStorage.email,
+            username:RegisterStorage.username
         }
         this.onChange = this.onChange.bind(this);
     }
@@ -58,7 +59,8 @@ class VerifyEmail extends Component {
                 },
                 body: JSON.stringify({
                     otp: this.state.otp,
-                    email: this.state.email
+                    email: this.state.email,
+                    username: this.state.username
                 })
             });
 
@@ -80,8 +82,9 @@ class VerifyEmail extends Component {
                 //     sound: 'ding.mp3',
                 //     wait: true
                 // });
-                this.props.history.push("/takeregisterphoto");
                 console.log("username" + result.username);
+                this.props.history.push("/takeregisterphoto");
+                
                 // redirectVar = <Redirect to="/welcome" />
             }
 
@@ -115,7 +118,7 @@ class VerifyEmail extends Component {
                     <div className="navigationclass row">
                         <ul className="navbar-nav" id="navg">
                             <li className="nav-item">
-                                <Link to="/Register" className="nav-link register" id="reg" >Register
+                                <Link to="/RegisterInfo" className="nav-link register" id="reg" >Register
                                 </Link>
                             </li>
                             <li className="nav-item">

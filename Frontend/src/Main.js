@@ -17,7 +17,7 @@ class Main extends Component {
           <div>
             <Route path="/Login" component={LoginForm} />
             {/* <Route exact path="/Home" component={Home} /> */} 
-            <Route exact path="/Register" component={Register} />
+            {/* <Route exact path="/Register" component={Register} /> */}
             <Route exact path="/RegisterInfo" component={RegisterInfo} />
             <Route exact path="/TakePhoto" component={TakePhoto} />
             <Route exact path="/welcome" component={Welcome} />

@@ -123,7 +123,7 @@ class Router {
                 console.log('here');
         
                 var sql = `UPDATE users SET emailverified = '1' WHERE emailid = ?`;
-        
+                email =req.body.email
                 db.query(sql, [ email ], function(error, results) {
                     if (error) {
                         console.log('error occurred', error);
@@ -134,10 +134,12 @@ class Router {
                        });
                        return;
                     } else {
+                        console.log("usernaame"+req.body.username);
                         res.json({
                             code:200,
                             success: true,
-                           msg: 'Otp successfully verified..'
+                            username: req.body.username,
+                            msg: 'Otp successfully verified..'
                        });
                         console.log('Success sign-up');
                         return;
