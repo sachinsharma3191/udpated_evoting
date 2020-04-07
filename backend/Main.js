@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mysql = require('mysql');
+const bodyParser = require("body-parser");
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const Router = require('./Router');
@@ -12,13 +13,15 @@ app.use(express.json());
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 //DB
+console.log("Creation Mysql Connection");
 const db = mysql.createConnection({
     host: 'localhost',
-    user: 'bam',
-    password: 'bam',
+    user: 'root',
+    password: 'sachin@123',
     database: 'Evoting'
 });
 
+console.log("Connecting to db");
 db.connect(function(err){
     if(err)
     {
@@ -26,6 +29,7 @@ db.connect(function(err){
         throw err;
         return false;
     }
+    console.log("Connection to db established");
 });
 
 const sessionStore = new MySQLStore({
@@ -44,11 +48,14 @@ app.use(session({
         httpOnly: false
     }
 }));
+app.use(bodyParser.json());
 
 new Router(app,db);
 app.get('/',function(req,res){
     res.sendFile(path.join(__dirname,'build','index.html'));
 })
 
-app.listen(3002);
+const port = 3002;
+console.log("Server started on port" + port);
+app.listen(port);
 

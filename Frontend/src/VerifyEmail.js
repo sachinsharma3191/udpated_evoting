@@ -114,29 +114,6 @@ class VerifyEmail extends Component {
     render() {
         return (
             <div className="container">
-                <div className="header">
-                    <div className="navigationclass row">
-                        <ul className="navbar-nav" id="navg">
-                            <li className="nav-item">
-                                <Link to="/RegisterInfo" className="nav-link register" id="reg" >Register
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/Login" className="nav-link" id="log" >Login
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link active" id="hom" >Hi there</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="brand">Electronic</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="colorb">Ballot</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
         <div className="row">
                 <div className="pitchline" id="pitch">

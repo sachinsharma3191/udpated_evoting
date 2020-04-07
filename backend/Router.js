@@ -1,5 +1,31 @@
 const bcrypt = require('bcrypt');
+const fs = require("fs");
 const nodemailer = require('nodemailer');
+const _ = require("underscore");
+const contract = require("./Contract").contract;
+const accounts = require("./Contract").accounts;
+const Web3 = require("web3");
+
+const columns = [
+    "candidate_id",
+    "first_name",
+    "last_name",
+    "dob",
+    "candidate_info",
+    "candidate_short_desc",
+    "candidate_long_desc",
+    "candidate_awards",
+    "voteCount",
+  ];
+  
+  const imageDir = "./Images/";
+  
+  const transConfig = {
+    from: accounts,
+    gasPrice: Web3.utils.asciiToHex("0.001"),
+    gas: 6721975,
+  };
+
 
 var otp;
 const high = 999999;
@@ -11,6 +37,10 @@ class Router {
         this.isLoggedIn(app,db);
         this.otpPost(app,db);
         this.registerPost(app,db);
+        this.getCandidates(app, db);
+        this.getCandidateImage(app, db);
+        this.castVote(app, db);
+        this.getElectionResult(app, db);
     }
 
     registerPost(app,db)
@@ -166,7 +196,8 @@ class Router {
                     {
                         res.json({
                             success: true,
-                            username: data[0].username
+                            username: data[0].username,
+                            userid: data[0].id,
                         });
                        return true;
                     }
@@ -214,7 +245,8 @@ class Router {
                             req.session.userID = data[0].id;
                             res.json({
                                 success: true,
-                                username: data[0].username
+                                username: data[0].username,
+                                userid: data[0].id
                             });
                             return;
                         }
@@ -237,5 +269,150 @@ class Router {
             });
         });
     }
+
+    getCandidates(app, db) {
+        app.get("/candidate/all", (req, res) => {
+          console.log(contract.methods);
+    
+          console.log("Loading Candidates from Contract");
+          contract.methods
+            .getCandidates()
+            .call(transConfig)
+            .then((result) => {
+              console.log("Candidate Loaded!!Sending");
+              let candidates = [];
+              for (let r of result) {
+                if (r[columns[0]] != "0") {
+                  candidates.push({
+                    id: r[columns[0]],
+                    first_name: r[columns[1]],
+                    last_name: r[columns[2]],
+                    dob: r[columns[3]],
+                    candidate_info: r[columns[4]],
+                    candidate_short_desc: r[columns[5]],
+                    candidate_long_desc: r[columns[6]],
+                    candidate_awards: r[columns[7]],
+                  });
+                }
+              }
+              res.json({
+                success: true,
+                msg: "Candidates Info Loaded",
+                data: candidates,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+              res.status(500).json({
+                success: false,
+                msg: "An error occured..",
+              });
+            });
+        });
+      }
+    
+      getCandidateImage(app, db) {
+        app.get("/candidate/image/:name", (req, res) => {
+          console.log("Calling Image Api");
+          if (_.isEmpty(req.params.name)) {
+            res.status(500).json({
+              success: false,
+              msg: "Missing Candidate Name",
+            });
+          } else {
+            console.log("Downloading Image for " + req.params.name);
+            const fileName = imageDir + req.params.name + ".jpg";
+            fs.readFile(fileName, (err, items) => {
+              if (err) {
+                  throw new Error(err);
+                res.status(500).json({
+                  success: false,
+                  msg: err,
+                });
+              } else {
+                res.json({
+                  image: items,
+                  success: true,
+                  msg: "Candidates Image Loaded",
+                });
+              }
+            });
+          }
+        });
+      }
+    
+      castVote(app, db) {
+        app.post("/vote", (req, res) => {
+          const candidate = parseInt(req.body.candidate);
+          const voter = parseInt(req.body.voter);
+          console.log("Candidate" + candidate);
+          console.log("Voter" + voter);
+          if (candidate < 0 || voter < 0) {
+            res.status(500).json({
+              success: false,
+              msg: "Missing or Invalid Candidate or Voter Info!!!Cannot vote",
+            });
+          } else {
+            contract.methods
+              .vote(candidate, voter)
+              .send(transConfig)
+              .then((f) => {
+                console.log(f);
+                res.json({
+                  success: true,
+                  msg: "Voter " + voter + " successfully casted vote",
+                });
+              })
+              .catch((e) => {
+                console.log(e.message);
+                res.status(500).json({
+                  success: false,
+                  msg: "Voter already voted",
+                });
+              });
+          }
+        });
+      }
+    
+      getElectionResult(app, db) {
+        app.get("/result/:date", (req, res) => {
+          const date = new Date(req.params.date);
+          const resultDate = new Date("2020-04-10");
+          console.log("Loading Election Result");
+          if (date <= resultDate) {
+            res.status(500).json({
+              msg: "Voting counting is in progress!!We will update you soon",
+            });
+          } else {
+            contract.methods
+              .getElectionResult()
+              .call(transConfig)
+              .then((result) => {
+                let elecResult = [];
+                for (let r of result) {
+                  if (r[columns[0]] != "0") {
+                  elecResult .push({
+                    id: r[columns[0]],
+                    first_name: r[columns[1]],
+                    last_name: r[columns[2]],
+                    voteCount : r[columns[8]],
+                  });
+                }
+                }
+                res.json({
+                  success: false,
+                  elecResult: elecResult,
+                });
+              })
+              .catch((e) => {
+                console.log(e.message);
+                res.status(500).json({
+                  success: false,
+                  msg: e.message,
+                });
+              });
+          }
+        });
+      }
 }
 module.exports = Router;
