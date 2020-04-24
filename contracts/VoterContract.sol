@@ -12,6 +12,7 @@ contract VoterContract   {
         bool voted;
         string username;
         string password;
+        string hash;
     }
     
     // Store Voters
@@ -24,13 +25,14 @@ contract VoterContract   {
         
     }
     
-    function register(string memory _first_name,string memory _last_name,string memory _ssn,string memory _username,string memory _password) public {
-        Voter memory voter = Voter(msg.sender,count,_first_name,_last_name,_ssn,false,_username,_password);
+    function register(string memory _first_name,string memory _last_name,string memory _ssn,string memory _username,string memory _password,string  memory _hash) public {
+        Voter memory voter = Voter(msg.sender,count,_first_name,_last_name,_ssn,false,_username,_password,_hash);
         voters[count] = voter;
         count++;
     }
     
     function userVoted(uint  _user_id) public {
+
         Voter storage voter = voters[_user_id];
         voter.voted = true;
     }

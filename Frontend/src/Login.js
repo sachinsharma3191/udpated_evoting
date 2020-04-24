@@ -63,7 +63,7 @@ async doLogin() {
            value={ this.state.username ? this.state.username:''}
            onChange = {(val)=> this.setInputValue('username',val)}
            />
-           <InputFields type='text' placeholder='Password'
+           <InputFields type='password' placeholder='Password'
            value={ this.state.password ? this.state.password:''}
            onChange = {(val)=> this.setInputValue('password',val)}
            />

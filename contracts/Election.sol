@@ -59,9 +59,7 @@ contract Election  {
         candidates[count] = candidate;
         count = count + 1;
     }
-    
     function vote (uint _candidateId,uint _voterId) public {
-        require(!voters[msg.sender],"Voter aleady voted");
         //valdiate User has not Voted twice
         require(!voters[_voterId].hasVoted,"Voter aleady voted");
         // update candidate vote Count
