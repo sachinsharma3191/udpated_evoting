@@ -4,7 +4,6 @@ const nodemailer = require("nodemailer");
 const _ = require("underscore");
 const contract = require("./Contract").contract;
 const accounts = require("./Contract").accounts;
-const register = require("./Contract").register;
 const Web3 = require("web3");
 const random = require("random-int");
 const object_hash = require("object-hash");
