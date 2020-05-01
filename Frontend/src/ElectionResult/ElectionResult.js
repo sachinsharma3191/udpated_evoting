@@ -7,9 +7,9 @@ import Button from "@material-ui/core/Button";
 import Spinner from "../UI/Spinner/Spinner";
 import Footer from "../Footer";
 import "./ElectionResult.css";
-import Flag from './usa.jpg';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import Flag from "./usa.jpg";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 class ElectionResult extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class ElectionResult extends Component {
             loading: false,
             winner: {
                 vote: 0,
-                name: null,
+                name: ''
             },
         };
     }
@@ -70,44 +70,53 @@ class ElectionResult extends Component {
     }
 
     render() {
-        const { result, error, loading,winner } = this.state;
-        console.log(winner);
+        const { result, error, loading, winner } = this.state;
         let ui = null;
         if (loading) {
             ui = <Spinner />;
         }
-
+        let winnerUI = null;
         if (!loading && result.length > 0) {
+            winnerUI =  <span className="winner">
+            <h3>
+              Congratulations {winner.first_name + " " + winner.last_name}
+            </h3>
+          </span>
             ui = (
-                <table id="Table">
-                    <thead>
-                    <tr>
-                        <th>Candidate Name</th>
-                        <th>
-                            Total Votes Received
-                            <Button onClick={(e) => this.sortData(e, "vote", "asc")}>
-                                <FaSortUp />
-                            </Button>
-                            <Button onClick={(e) => this.sortData(e, "vote", "desc")}>
-                                <FaSortDown />
-                            </Button>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {result.map((cand) => {
-                        let id = cand.id;
-                        let voteCount = cand.voteCount;
-                        const name = cand.first_name + " " + cand.last_name;
-                        return (
-                            <tr>
-                                <td>{name}</td>
-                                <td>{voteCount}</td>
-                            </tr>
-                        );
-                    })}
-                    </tbody>
-                </table>
+                <React.Fragment>
+                    <table id="Table">
+                        <thead>
+                        <tr>
+                            <th>Candidate Name</th>
+                            <th>
+                                Total Votes Received
+                                <Button onClick={(e) => this.sortData(e, "vote", "asc")}>
+                                    <FaSortUp />
+                                </Button>
+                                <Button onClick={(e) => this.sortData(e, "vote", "desc")}>
+                                    <FaSortDown />
+                                </Button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {result.map((cand,index) => {
+                            let id = cand.id;
+                            let voteCount = cand.voteCount;
+                            const name = cand.first_name + " " + cand.last_name;
+                            return (
+                                <tr key={index}>
+                                    <td>{name}</td>
+                                    <td>{voteCount}</td>
+                                </tr>
+                            );
+                        })}
+                        </tbody>
+                    </table>
+                    {
+                        winnerUI
+                    }
+                </React.Fragment>
             );
         }
         if (!loading && error) {
@@ -118,14 +127,14 @@ class ElectionResult extends Component {
             );
         }
         return (
-            <div className="container election">
+            <div className="container">
                 <div className="ElectionResult">
-                        <img className="us_flag" src={Flag}/>
+                    <img className="us_flag" src={Flag} />
                     {ui}
                 </div>
-                    <span class="winner">
-                        <h3>Congratulations {winner.first_name + " " +  winner.last_name}</h3>
-                    </span>
+                {
+                    winnerUI
+                }
                 <Footer />
             </div>
         );
