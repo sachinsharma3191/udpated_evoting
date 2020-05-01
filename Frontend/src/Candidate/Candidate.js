@@ -10,7 +10,6 @@ const Candidate = (props) => {
         <img
           className="card-img-top"
           src={candidate["image"]}
-          alt=""
         />
       </div>
       <div className="col-md-3">

@@ -1,0 +1,31 @@
+#Table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+
+#Table td, #Table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: #ddd;
+}
+
+
+
+#Table th {
+    text-align: left;
+    background-color: #ddd;
+    color: white;
+}
+
+.ElectionResult {
+    margin-top: 5%;
+    margin-left: 20%;
+}
+
+.election {
+    background-image: url("./usa.jpg");
+    background-repeat:no-repeat;
+    background-size: 88%;
+    background-position:60% 1%;
+
+}

@@ -57,16 +57,19 @@ export const auth = (email, password) => {
             })
             .then(response => {
                 const responseData = response.data;
-                let expirationDate = new Date();
-                expirationDate.setMonth(expirationDate.getMonth() + 3);
+                if(responseData.success){
+                    localStorage.setItem("token", responseData.token);
+                    localStorage.setItem("expirationDate", responseData.expiresIn);
+                    localStorage.setItem("userid", responseData.userid);
+                    localStorage.setItem("username",responseData.username);
+                    //Dispatch Actions
+                    dispatch(authSuccess(responseData.token, responseData.username));
+                    //dispatch(checkAuthTimeout(expirationDate));
+                }
+                else {
+                    dispatch(authFail(responseData.msg));
+                }
 
-                localStorage.setItem("token", "sadasdasasdasdasd");
-                localStorage.setItem("expirationDate", expirationDate);
-                localStorage.setItem("userid", responseData.userid);
-                localStorage.setItem("username",responseData.username);
-                //Dispatch Actions
-                dispatch(authSuccess("asdassa", responseData.username));
-                //dispatch(checkAuthTimeout(expirationDate));
             })
             .catch(err => {
                 dispatch(authFail(err.response.data));
