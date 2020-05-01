@@ -7,25 +7,30 @@
     border: 1px solid #ddd;
     padding: 8px;
     background-color: #ddd;
+    text-align: center;
+    vertical-align: middle;
 }
-
-
 
 #Table th {
     text-align: left;
     background-color: #ddd;
-    color: white;
 }
 
 .ElectionResult {
     margin-top: 5%;
-    margin-left: 20%;
+    margin-left: 21%;
 }
 
-.election {
-    background-image: url("./usa.jpg");
-    background-repeat:no-repeat;
-    background-size: 88%;
-    background-position:60% 1%;
+.us_flag {
+    width: 75%;
+    height: 30%;
+}
 
+.winner {
+    background-color: black;
+    color: white;
+    margin-top: 5%;
+    margin-left: 21%;
+    margin-right: 21%;
+    text-align: center;
 }

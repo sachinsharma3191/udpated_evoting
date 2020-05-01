@@ -2,6 +2,11 @@ import React from "react";
 import { useHistory } from "react-router";
 import "./Candidate.css";
 
+
+const style = {
+    fontWeight: 'bold',
+    fontSize: '100%'
+}
 const CandidateDetail = (props) => {
   const history = useHistory();
   const candidate = props.history.location.state.candidateDetails[0];
@@ -12,16 +17,16 @@ const CandidateDetail = (props) => {
         alt=""/>
       </div>
       <div className="col-md-4">
-        <h2 className="label">
+        <h1 className="label">
           <label htmlFor="long">Info</label>
-        </h2>
-        <div><span className="candidate">{candidate.candidate_info}</span></div>
+        </h1>
+        <div style={style}><span className="candidate">{candidate.candidate_info}</span></div>
       </div>
       <div className="col-md-4">
-        <h2>
+        <h1>
           <label htmlFor="long">Career</label>
-        </h2>
-        <div><span className="candidate">{candidate.candidate_short_desc}</span></div>
+        </h1>
+        <div style={style}><span className="candidate">{candidate.candidate_short_desc}</span></div>
       </div>
       <div className="Button">
         <button className="btn btn-primary" onClick={() => history.goBack()}>

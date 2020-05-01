@@ -12,6 +12,7 @@
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",
     "node-notifier": "^6.0.0",
+    "random-int": "^2.0.1",
     "react": "^16.13.0",
     "react-bootstrap": "^0.33.1",
     "react-dom": "^16.13.0",
@@ -26,7 +27,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sweetalert2": "^9.8.2",
+    "sweetalert2": "^9.10.12",
+    "sweetalert2-react-content": "^3.0.1",
     "underscore": "^1.10.2"
   },
   "scripts": {
